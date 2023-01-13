@@ -27,6 +27,40 @@ def train_model_Normal(model, data, target, criterion, optimizer, num_epochs):
         if (epoch+1) % 10 == 0:
             print(f'Epoch [{epoch+1}/{num_epochs}], Loss: {loss.item():.4f}')
 
+def test_model(model, dataloader, criterion):
+    """
+    A function to test a PyTorch model on a given dataset using dataloader and calculate accuracy
+    
+    Parameters:
+        - model : a PyTorch model
+        - dataloader (torch.utils.data.DataLoader) : dataloader for the dataset
+        - criterion : loss function
+    """
+    model.eval()
+    correct = 0
+    total = 0
+    test_loss = 0.0
+    for i, (data, target) in enumerate(dataloader):
+        # Move input and target data to the GPU if available
+        if torch.cuda.is_available():
+            data = data.cuda()
+            target = target.cuda()
+
+        # Forward pass
+        output = model(data)
+        loss = criterion(output, target)
+        test_loss += loss.item()
+
+        # calculate accuracy
+        _, predicted = torch.max(output.data, 1)
+        total += target.size(0)
+        correct += (predicted == target).sum().item()
+
+    # Print the average loss and accuracy
+    print(f'Test Loss: {test_loss / len(dataloader):.4f}')
+    print(f'Test Accuracy: {(correct / total) * 100:.2f}%')
+                        
+       
 import torch
 from torch import nn
 from torch.utils.data import DataLoader
