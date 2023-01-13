@@ -1,5 +1,6 @@
 import torch
 from torch import nn
+from torch.utils.data import DataLoader
 
 def train_model(model, data, target, criterion, optimizer, num_epochs):
     """
@@ -60,10 +61,7 @@ def test_model(model, dataloader, criterion):
     print(f'Test Loss: {test_loss / len(dataloader):.4f}')
     print(f'Test Accuracy: {(correct / total) * 100:.2f}%')
                         
-       
-import torch
-from torch import nn
-from torch.utils.data import DataLoader
+  
 
 def train_cnn(model, dataloader, criterion, optimizer, num_epochs):
     """
@@ -101,9 +99,6 @@ def train_cnn(model, dataloader, criterion, optimizer, num_epochs):
             print(f'Epoch [{epoch+1}/{num_epochs}], Loss: {running_loss / len(dataloader):.4f}')
 
 
-import torch
-from torch import nn
-from torch.utils.data import DataLoader
 
 def test_cnn(model, dataloader, criterion):
     """
@@ -141,8 +136,6 @@ def test_cnn(model, dataloader, criterion):
         print(f'Test Accuracy: {(correct / total) * 100:.2f}%')
 
 
-from torch.utils.data import DataLoader
-
 def create_dataloader(dataset, batch_size, num_workers, shuffle):
     """
     A function to create a PyTorch DataLoader
@@ -155,7 +148,7 @@ def create_dataloader(dataset, batch_size, num_workers, shuffle):
     """
     return DataLoader(dataset, batch_size=batch_size, num_workers=num_workers, shuffle=shuffle)
 
-import torch.nn as nn
+
 
 def cnn_model(input_shape, num_classes):
     """
@@ -184,7 +177,6 @@ def cnn_model(input_shape, num_classes):
             return x
     return CNN()
 
-import torch
 
 def save_model(model, path):
     """
@@ -195,8 +187,6 @@ def save_model(model, path):
         - path (str) : the file path where the model should be saved
     """
     torch.save(model.state_dict(), path)
-
-import torch
 
 def load_model(model, path):
     """
