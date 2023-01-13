@@ -195,7 +195,8 @@ def save_model(model, path):
         - path (str) : the file path where the model should be saved
     """
     torch.save(model.state_dict(), path)
- import torch
+
+import torch
 
 def load_model(model, path):
     """
