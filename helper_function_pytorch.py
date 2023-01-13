@@ -1,7 +1,7 @@
 import torch
 from torch import nn
 
-def train_model_Normal(model, data, target, criterion, optimizer, num_epochs):
+def train_model(model, data, target, criterion, optimizer, num_epochs):
     """
     A function to train a PyTorch model on a given dataset
     
